@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С Новым годом, мама!</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #34495e;
+            color: #ecf0f1;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            position: relative;
+            height: 100vh;
+        }
+        .container {
+            margin-top: 50px;
+            z-index: 10;
+            position: relative;
+        }
+        h1 {
+            font-size: 3em;
+            color: #e67e22;
+            text-shadow: 2px 2px 10px rgba(255, 69, 0, 0.7);
+            margin-bottom: 20px;
+        }
+        .qr-code {
+            display: inline-block;
+            margin: 20px;
+            text-align: center;
+        }
+        .qr-code a {
+            display: block;
+            margin-bottom: 10px;
+            transition: transform 0.3s ease;
+        }
+        .qr-code a:hover {
+            transform: scale(1.1);
+        }
+        .qr-code img {
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+        p {
+            font-size: 1.2em;
+            color: #bdc3c7;
+            font-weight: bold;
+        }
+
+        /* Стили для снежинок */
+        .snowflake {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+
+        /* Анимация для падения снега */
+        @keyframes fall {
+            0% {
+                top: -10px; /* Начало падения (сверху) */
+                left: calc(100% * var(--random-x)); /* Случайная горизонтальная позиция */
+                transform: translateX(0); /* Без смещения */
+            }
+            100% {
+                top: 100vh; /* Конец падения (внизу) */
+                left: calc(100% * var(--random-x)); /* Горизонтальное движение по экрану */
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>С Новым годом, мама!</h1>
+        <div class="qr-code">
+            <a href="https://msemenkin-penza-temples-2745.twc1.net" target="_blank">
+                <img src="http://qrcoder.ru/code/?msemenkin-penza-temples-2745.twc1.net&4&0" width="148" height="148" border="0" title="QR код 1">
+            </a>
+            <p>Рабочий сайт</p>
+            <a href="https://raznochtenie.ru" target="_blank">
+                <img src="http://qrcoder.ru/code/?raznochtenie.ru&4&0x" width="148" height="148" border="0" title="QR код 2">
+            </a>
+            <p>Почти рабочий сайт</p>
+            <p>raznochtenie.ru</p>
+        </div>
+    </div>
+
+    <script>
+        // Функция для создания снежинок
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.style.width = `${Math.random() * 10 + 5}px`; // Размер снежинки от 5 до 15px
+            snowflake.style.height = snowflake.style.width; // Снежинка круглая
+            const randomX = Math.random(); // Случайное положение по горизонтали (от 0 до 1)
+            snowflake.style.setProperty('--random-x', randomX); // Устанавливаем пользовательскую переменную для случайного положения
+            snowflake.style.animationDuration = `${Math.random() * 6 + 6}s`; // Случайная скорость падения (от 3 до 8 секунд)
+            snowflake.style.animationDelay = `${Math.random() * 5}s`; // Случайная задержка
+
+            document.body.appendChild(snowflake);
+
+            // Удаляем снежинку, когда она упала
+            setTimeout(() => {
+                snowflake.remove();
+            }, 17000); // Удалить снежинку через 8 секунд (время анимации)
+        }
+
+        // Функция для запуска анимации снега
+        function startSnowfall() {
+            setInterval(createSnowflake, 300); // Создаем снежинки каждые 100 миллисекунд
+        }
+
+        // Запускаем анимацию падения снега
+        startSnowfall();
+    </script>
+</body>
+</html>
